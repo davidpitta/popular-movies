@@ -1,0 +1,50 @@
+.filmes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filme {
+    background-color: #1D1C3B;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    margin-bottom: 2em;
+    padding: 1.5em;
+}
+
+.avaliacao, .favoritar {
+    display: flex;
+}
+
+.avaliacao-favoritar {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
+.nota, .texto-favoritar {
+    margin-left: 0.3em;
+    font-weight: 400;
+}
+
+.descricao {
+    width: 50%;
+    color: #ACACAC;
+    line-height: 1.5em;
+}
+
+.informacoes {
+    margin-right: 2em;
+    width: 18%;
+}
+
+
+.imagem-filme {
+    border-radius: 50%;
+}
+
+.titulo-filme {
+    line-height: 1.3em;
+}

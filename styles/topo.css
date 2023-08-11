@@ -1,0 +1,32 @@
+.topo {
+    text-align: center;
+    margin: 3em;
+}
+
+.titulo {
+    font-weight: 600;
+    font-size: 36px;
+}
+
+.campo-busca {
+    padding: 1em;
+    border: 1px solid var(--cor-fonte);
+    border-radius: 8px;
+    width: 40%;
+    color: var(--cor-fonte);
+    margin: 2em;
+    background: url(../img/search-icon.svg) no-repeat;
+    background-position: 97% 50%;
+}
+
+.filmes-favoritos {
+    display: block;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.checkbox-favoritos {
+    cursor: pointer;
+    accent-color: #706EA8;
+}

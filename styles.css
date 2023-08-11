@@ -1,0 +1,16 @@
+@import url("styles/topo.css");
+@import url("styles/filmes.css");
+
+:root {
+    --cor-de-fundo: #17162E;
+    --fonte-principal: "Kumbh Sans";
+    --cor-fonte: #FFFFFF;
+}
+
+body {
+    background-color: var(--cor-de-fundo);
+    font-family: var(--fonte-principal);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--cor-fonte);
+}
