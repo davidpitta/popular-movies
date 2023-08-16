@@ -1,4 +1,4 @@
-import { filmes } from "./main.js";
+import { conectaApi } from "./conectaApi.js";
 
 const sectionFilmes = document.querySelector('.filmes');
 
@@ -6,42 +6,44 @@ export default function constroiCard(filme) {
     const divFilme = document.createElement('div');
     divFilme.classList.add('filme');
 
+    const exp = /-/g;
+    const date = new Date(filme.release_date.replace(exp, ','));
+    const year = date.getUTCFullYear();
+
+    const imageUrl = `https://image.tmdb.org/t/p/w500${filme.poster_path}`;
+
     divFilme.innerHTML = `
-        <img src="${filme.image}" alt="Banner do filme ${filme.title}" class="imagem-filme">
+        <img src="${imageUrl}" alt="Banner do filme ${filme.title}" class="imagem-filme">
         <div class="informacoes">
-            <h4 class="titulo-filme">${filme.title + ' (' + filme.year + ')'}</h4>
+            <h4 class="titulo-filme">${filme.title + ' (' + year + ')'}</h4>
             <div class="avaliacao-favoritar">
                 <div class="avaliacao">
                     <img src="img/Star.svg" alt="">
-                    <span class="nota">${filme.rating}</span>
+                    <span class="nota">${filme.vote_average}</span>
                 </div>
                 <div class="favoritar">
-                    <img src="${filme.isFavorited ? 'img/Vector.svg' : 'img/Heart.svg'}" alt="">
+                    <img src="img/Heart.svg" alt="">
                     <span class="texto-favoritar">Favoritar</span>
                 </div>
             </div>
         </div>
         <span class="descricao">
-            ${filme.description}
+            ${filme.overview}
         </span>
     `
 
     return divFilme;
 }
 
-function listaFilmes() {
-    while(sectionFilmes.firstChild) {
-        sectionFilmes.removeChild(sectionFilmes.firstChild);
+async function listaFilmes() {
+    try {
+        const listaApi = await conectaApi.listaVideos();
+        listaApi.forEach(filme => {
+            sectionFilmes.appendChild(constroiCard(filme));
+        });
+    } catch {
+        sectionFilmes.innerHTML = `<h2>Não foi possível carregar a lista de vídeos<h2>`
     }
-
-    filmes.forEach(filme => {
-        sectionFilmes.appendChild(constroiCard(filme));
-    });
 }
 
 listaFilmes();
-
-export const mostraFilme = {
-    constroiCard,
-    listaFilmes
-}

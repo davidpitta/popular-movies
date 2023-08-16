@@ -42,7 +42,8 @@
 
 
 .imagem-filme {
-    border-radius: 50%;
+    width: 240px;
+    height: 300px;
 }
 
 .titulo-filme {
