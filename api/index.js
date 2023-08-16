@@ -1,5 +1,5 @@
 module.exports = (req, res) => {
-    const apiKey = process.env.API_KEY;
-  
-    res.json({ success: true });
-  };
+  const apiKey = process.env.API_KEY;
+
+  res.json({ apiKey });
+};

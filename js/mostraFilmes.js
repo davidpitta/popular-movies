@@ -37,7 +37,7 @@ export default function constroiCard(filme) {
 
 async function listaFilmes() {
     try {
-        const listaApi = await conectaApi.listaVideos();
+        const listaApi = await conectaApi.listaFilmes();
         listaApi.forEach(filme => {
             sectionFilmes.appendChild(constroiCard(filme));
         });
