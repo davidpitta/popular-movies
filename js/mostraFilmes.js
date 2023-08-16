@@ -35,10 +35,19 @@ export default function constroiCard(filme) {
     return divFilme;
 }
 
-async function listaFilmes() {
+export async function listaFilmes(filtro = '') {
     try {
         const listaApi = await conectaApi.listaFilmes();
-        listaApi.forEach(filme => {
+
+        const filmes_filtrados = listaApi.filter(filme => {
+            return filme.title.toLowerCase().includes(filtro.toLowerCase());
+        })
+
+        while(sectionFilmes.firstChild) {
+            sectionFilmes.removeChild(sectionFilmes.firstChild);
+        }
+
+        filmes_filtrados.forEach(filme => {
             sectionFilmes.appendChild(constroiCard(filme));
         });
     } catch {
