@@ -1,4 +1,5 @@
 import { conectaApi } from "./conectaApi.js";
+import { filmesFavoritos } from "./filmesFavoritos.js";
 
 const sectionFilmes = document.querySelector('.filmes');
 
@@ -21,16 +22,40 @@ export default function constroiCard(filme) {
                     <img src="img/Star.svg" alt="">
                     <span class="nota">${filme.vote_average}</span>
                 </div>
-                <div class="favoritar">
-                    <img src="img/Heart.svg" alt="">
+                <label class="favoritar">
+                    <input type="checkbox" class="checkbox-heart">
+                    <img src="img/Heart.svg" alt="" class="heart-image">
                     <span class="texto-favoritar">Favoritar</span>
-                </div>
+                </label>
             </div>
         </div>
         <span class="descricao">
             ${filme.overview}
         </span>
-    `
+    `;
+
+    const favoritos = filmesFavoritos.retornaFilmesFavoritos();
+    const favorito = favoritos.filter(filmeCurtido => filmeCurtido.id === filme.id)[0];
+    const checkboxHeart = divFilme.querySelector('.checkbox-heart');
+
+    const heartImage = divFilme.querySelector('.heart-image');
+    if(favorito){
+        heartImage.src = 'img/Vector.svg';
+        checkboxHeart.checked = true;
+    } else {
+        heartImage.src = 'img/Heart.svg';
+        checkboxHeart.checked = false;
+    }
+
+    checkboxHeart.addEventListener('click', evento => {
+        if(evento.target.checked) {
+            heartImage.src = 'img/Vector.svg';
+            filmesFavoritos.salvarFilmeCurtido(filme);
+        } else {
+            heartImage.src = 'img/Heart.svg';
+            filmesFavoritos.removerFilmeCurtido(filme);
+        }
+    })
 
     return divFilme;
 }
