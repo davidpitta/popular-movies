@@ -1,5 +1,6 @@
 import { conectaApi } from "./conectaApi.js";
 import { filmesFavoritos } from "./filmesFavoritos.js";
+import mostrarFilmesFavoritos from "./mostrarFilmesFavoritos.js";
 
 const sectionFilmes = document.querySelector('.filmes');
 
@@ -54,6 +55,10 @@ export default function constroiCard(filme) {
         } else {
             heartImage.src = 'img/Heart.svg';
             filmesFavoritos.removerFilmeCurtido(filme);
+            const checkboxFavoritos = document.querySelector('.checkbox-favoritos');
+            if(checkboxFavoritos.checked){
+                mostrarFilmesFavoritos();
+            }
         }
     })
 
@@ -76,7 +81,7 @@ export async function listaFilmes(filtro = '') {
             sectionFilmes.appendChild(constroiCard(filme));
         });
     } catch {
-        sectionFilmes.innerHTML = `<h2>Não foi possível carregar a lista de vídeos<h2>`
+        sectionFilmes.innerHTML = `<h2>Não foi possível carregar a lista de vídeos<h2>`;
     }
 }
 
