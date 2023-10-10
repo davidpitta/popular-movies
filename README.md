@@ -3,3 +3,6 @@
 
 ## Technologies
 <img src="https://skillicons.dev/icons?i=js,html,css,git" />
+
+## Deploy
+Project Link: https://vercel.com/davidpitta/popular-movies/87nXRkm4t6aq86JawPqyVBneqTXz
